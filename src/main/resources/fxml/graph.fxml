@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -28,17 +29,30 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="121.0" prefWidth="296.0">
                <children>
-                  <ChoiceBox fx:id="choiceBoxMethod" layoutX="16.0" layoutY="22.0" prefHeight="26.0" prefWidth="154.0">
+                  <ChoiceBox fx:id="choiceBoxMethod" layoutX="16.0" layoutY="22.0" prefHeight="26.0" prefWidth="154.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="21.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <padding>
+                        <Insets right="2.0" />
+                     </padding>
                   </ChoiceBox>
                </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="70.0" prefWidth="392.0">
                <children>
-                  <TextField fx:id="textFieldFunction" layoutX="40.0" layoutY="22.0" onAction="#plot" prefHeight="26.0" prefWidth="251.0" />
-                  <Button fx:id="btnCalculate" layoutX="291.0" layoutY="22.0" mnemonicParsing="false" onAction="#calculate" prefHeight="26.0" prefWidth="75.0" text="Calculate" />
+                  <TextField fx:id="textFieldFunction" layoutX="40.0" layoutY="22.0" onAction="#plot" prefHeight="28.0" prefWidth="226.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="21.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></TextField>
+                  <Button fx:id="btnCalculate" alignment="CENTER" layoutX="291.0" layoutY="22.0" mnemonicParsing="false" onAction="#calculate" prefHeight="26.0" prefWidth="75.0" text="Calculate" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="21.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                   <Text fx:id="textWrongFunction" fill="RED" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong function" visible="false" wrappingWidth="250.93678283691406">
                      <font>
                         <Font size="9.0" />
@@ -50,16 +64,32 @@
       </SplitPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="55.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Text fx:id="textRoot" layoutX="28.0" layoutY="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Root of function" wrappingWidth="248.9120635986328" />
-            <TextField fx:id="textFieldRight" layoutX="495.0" prefHeight="26.0" prefWidth="70.0" text="10" />
-            <TextField fx:id="textFieldLeft" layoutX="408.0" prefHeight="26.0" prefWidth="73.0" text="0" />
+            <Text fx:id="textRoot" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Root of function: " wrappingWidth="248.9120635986328" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="40.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Text>
+            <TextField fx:id="textFieldRight" layoutX="497.0" prefHeight="26.0" prefWidth="50.0" text="10" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="50.0">
+               <effect>
+                  <Glow />
+               </effect>
+            </TextField>
+            <TextField fx:id="textFieldLeft" layoutX="428.0" layoutY="29.0" prefHeight="26.0" prefWidth="50.0" text="0" AnchorPane.bottomAnchor="15.000000000000007" AnchorPane.rightAnchor="121.60000000000002">
+               <effect>
+                  <Glow />
+               </effect>
+            </TextField>
             <Text fx:id="textException" fill="RED" layoutX="408.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Illegal arguments" visible="false" wrappingWidth="158.93670654296875">
                <font>
                   <Font size="9.0" />
                </font>
             </Text>
+            <Text fx:id="textDomain" layoutX="428.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Domain of a function:" wrappingWidth="118.93670654296875" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="53.06329345703125" />
          </children>
       </AnchorPane>
    </bottom>

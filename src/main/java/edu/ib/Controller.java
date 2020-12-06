@@ -2,7 +2,6 @@ package edu.ib;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.mariuszgromada.math.mxparser.Function;
 
+/**
+ * klasa sterująca programem
+ */
 public class Controller {
 
     @FXML
@@ -59,6 +61,13 @@ public class Controller {
     private Text textException;
 
     @FXML
+    private Text textDomain;
+
+    /**
+     * metoda obliczająca miejsce zerowe według wybranej metody
+     * @param event przenosi informacje o wywołaniu metody
+     */
+    @FXML
     void calculate(ActionEvent event) {
         plot(event);
         String choiceBox = choiceBoxMethod.getValue();
@@ -66,23 +75,28 @@ public class Controller {
         Function function = new Function("f(x)=" + textFieldFunction.getText());
         switch (choiceBox) {
             case "Bisection":
-                textRoot.setText("Root of function " + r.bisection(0, 10, 0.001, (x) -> function.calculate(x)));
+                textRoot.setText("Root of function: " + r.bisection(Integer.parseInt(textFieldLeft.getText()), Integer.parseInt(textFieldRight.getText()), 0.001, (x) -> function.calculate(x)));
                 break;
             case "False position":
-                textRoot.setText("Root of function " + r.falsi(0, 10, 0.001, (x) -> function.calculate(x)));
+                textRoot.setText("Root of function: " + r.falsi(Integer.parseInt(textFieldLeft.getText()), Integer.parseInt(textFieldRight.getText()), 0.001, (x) -> function.calculate(x)));
                 break;
             case "Fixed-point":
-                textRoot.setText("Root of function " + r.fixedpoint(0, 0.001, (x) -> function.calculate(x)));
+                textRoot.setText("Root of function: " + r.fixedpoint((Integer.parseInt(textFieldRight.getText())-Integer.parseInt(textFieldRight.getText()))/2, 0.001, (x) -> function.calculate(x)));
                 break;
             case "Newton-Raphson":
-                textRoot.setText("Root of function " + r.newtonraphson(0, 0.001, (x) -> function.calculate(x)));
+                textRoot.setText("Root of function: " + r.newtonraphson((Integer.parseInt(textFieldRight.getText())-Integer.parseInt(textFieldRight.getText()))/2, 0.001, (x) -> function.calculate(x)));
                 break;
             case "Secant":
-                textRoot.setText("Root of function " + r.sieczna(0, 10, 0.001, (x) -> function.calculate(x)));
+                textRoot.setText("Root of function: " + r.sieczna(Integer.parseInt(textFieldLeft.getText()), Integer.parseInt(textFieldRight.getText()), 0.001, (x) -> function.calculate(x)));
                 break;
         }
     }
 
+    /**
+     * metoda rysująca wykres wpisanej funkcji
+     * @param event przenosi informacje o wywołaniu metody
+     * @throws IllegalArgumentException gdy zostanie źle podany przedział funkcji
+     */
     @FXML
     void plot(ActionEvent event) throws IllegalArgumentException{
         Function function = new Function("f(x)=" + textFieldFunction.getText());
@@ -113,6 +127,9 @@ public class Controller {
         }
     }
 
+    /**
+     * metoda ustawiająca początkowe wartości programu
+     */
     @FXML
     void initialize() {
         assert graph != null : "fx:id=\"graph\" was not injected: check your FXML file 'graph.fxml'.";
@@ -126,6 +143,7 @@ public class Controller {
         assert textFieldRight != null : "fx:id=\"textFieldRight\" was not injected: check your FXML file 'graph.fxml'.";
         assert textFieldLeft != null : "fx:id=\"textFieldLeft\" was not injected: check your FXML file 'graph.fxml'.";
         assert textException != null : "fx:id=\"textException\" was not injected: check your FXML file 'graph.fxml'.";
+        assert textDomain != null : "fx:id=\"textDomain\" was not injected: check your FXML file 'graph.fxml'.";
         String a = "Bisection";
         String b = "False position";
         String c = "Fixed-point";

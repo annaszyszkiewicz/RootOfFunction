@@ -96,7 +96,7 @@ public class RootOfFunction {
             n++;
         } while (epsilon2 > epsilon1);
 
-        if (Double.POSITIVE_INFINITY == x1 || Double.NEGATIVE_INFINITY == x1) {
+        if (Double.POSITIVE_INFINITY == x1 || Double.NEGATIVE_INFINITY == x1 || function.f(x1) < -0.1 || function.f(x1) > 0.1 ){
             return "Failed";
         } else return String.valueOf(x1);
 
@@ -159,7 +159,7 @@ public class RootOfFunction {
             epsilon2 = Math.abs((x - xb) / x);
             n++;
         } while (epsilon2 > epsilon1);
-        if (function.f(x) > 0.1 || function.f(x) < -0.1) {
+        if (function.f(x) > 0.1 || function.f(x) < -0.1 || Double.POSITIVE_INFINITY == x || Double.NEGATIVE_INFINITY == x) {
             return "Failed";
         } else return String.valueOf(x);
     }
